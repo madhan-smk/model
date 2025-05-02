@@ -1,0 +1,505 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  /* Container for the congratulatory message */
+.max-w-sm {
+  max-width: 24rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.shadow-xl {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-gray-900 {
+  color: #1a202c;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-gray-600 {
+  color: #718096;
+}
+
+/* Container for the card columns */
+.container {
+  width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* Flex properties for medium screens and up */
+.md\:flex {
+  @media (min-width: 768px) {
+      display: flex;
+  }
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.text-gray-700 {
+  color: #4a5568;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bg-gray-400 {
+  background-color: #cbd5e0;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.lg\:flex {
+  @media (min-width: 1024px) {
+      display: flex;
+  }
+}
+
+.lg\:items-center {
+  @media (min-width: 1024px) {
+      align-items: center;
+  }
+}
+
+.lg\:flex-shrink-0 {
+  @media (min-width: 1024px) {
+      flex-shrink: 0;
+  }
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.lg\:w-64 {
+  @media (min-width: 1024px) {
+      width: 16rem;
+  }
+}
+
+.mt-4 {
+  margin-top: 1rem;
+  font-size: 20px;
+}
+
+.lg\:mt-0 {
+  @media (min-width: 1024px) {
+      margin-top: 0;
+      
+  }
+}
+
+.lg\:ml-6 {
+  @media (min-width: 1024px) {
+      margin-left: 1.5rem;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.tracking-wide {
+  letter-spacing: 0.05em;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-indigo-600 {
+  color: #4c51bf;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.block {
+  display: block;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.hover\:underline:hover {
+  text-decoration: underline;
+}
+
+/* Grid layout for cards */
+.grid {
+  display: grid;
+  grid-gap: 1rem;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.gap-3 {
+  grid-gap: 0.75rem;
+}
+
+.p-7 {
+  padding: 1.75rem;
+}
+
+.sm\:grid-cols-2 {
+  @media (min-width: 640px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.md\:grid-cols-3 {
+  @media (min-width: 768px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.lg\:grid-cols-4 {
+  @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.xl\:grid-cols-5 {
+  @media (min-width: 1280px) {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.transition-transform {
+  transition: transform 0.2s;
+}
+
+.gap-6 {
+  grid-gap: 1.5rem;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.bg-red-600 {
+  background-color: #e53e3e;
+}
+
+.px-\[32px\] {
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--space-y-reverse));
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.group:hover .group-hover\:translate-x-1 {
+  transform: translateX(0.25rem);
+}
+
+.group-hover\:translate-x-1 {
+  transform: translateX(0);
+  transition: transform 0.2s;
+}
+
+.text-[#8C30F5] {
+  color: #8C30F5;
+}
+
+.transition-transform {
+  transition: transform 0.2s;
+}
+
+.duration-800 {
+  transition-duration: 0.8s;
+}
+
+</style>
+{% if prediction_text == 'Yes' %}
+    <div class="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl">
+      
+      <div class="ml-6 pt-1" >
+        <h4 class="text-xl text-gray-900" style="font-size: 20px;">Congratulations! You're eligible for our Loans</h4>
+        <p class="text-base text-gray-600">You have a new message!</p>
+      </div>
+    </div>
+
+    <!-- CARD COLUMNS -->
+    <div class="container mt-5 mx-auto px-2">
+      <!-- Flex on med screens and up -->
+      <div class="md:flex">
+        <div
+          class="flex-1 text-gray-700 text-center bg-gray-400 px-5 py-5 m-2 rounded"
+        >
+          <div class="lg:flex lg:items-center">
+            <div class="lg:flex-shrink-0">
+              <img class="rounded-lg lg:w-64" src="https://i.ibb.co/mJJNkTJ/img2.jpg" alt="" />
+            </div>
+            <div class="mt-4 lg:mt-0 lg:ml-6">
+              <div
+                class="uppercase tracking-wide text-sm text-indigo-600 font-bold" style="font-size: 25px;"
+              >
+                Networking
+              </div><br>
+              <a
+                href="#"
+                class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
+                >Finding connections to help your business grow</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex-1 text-gray-700 text-center bg-gray-400 px-5 py-5 m-2 rounded"
+        >
+          <div class="lg:flex lg:items-center">
+            <div class="lg:flex-shrink-0">
+              <img class="rounded-lg lg:w-64" src="https://i.ibb.co/w4wGYvQ/img1.jpg
+    " alt="" />
+            </div>
+            <div class="mt-4 lg:mt-0 lg:ml-6">
+              <div
+                class="uppercase tracking-wide text-sm text-indigo-600 font-bold" style="font-size: 25px;"
+              >
+                Marketing
+              </div><br>
+              <a
+                href="#"
+                class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
+                >Finding customers for your new business</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-3 p-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div class="flex flex-col transition-transform gap-6 rounded-md bg-red-600 px-[32px] py-5 shadow-2xl transition-transform hover:scale-105">
+          <div class="">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="{% static 'image/Bharti_Airtel-Logo.wine' %}"></svg>
+          </div>
+          <div class="space-y-3" >
+            <h2 class="text-xl font-medium text-white" style="font-size: 25px;">PersonalLoan</h2><br>
+            <p class="text-sm text-white"style="font-size: 13px;">HDFC Bank Personal Loan</p><br>
+            <p class="text-sm text-white"style="font-size: 13px;">10.50% p.a. onwards</p><br>
+            <p class="text-sm text-white"style="font-size: 13px;">Up to 5.5%</p><br>
+            <a href="https://www.hdfcbank.com/personal/borrow/popular-loans/personal-loan" class="text-ind group text-white flex items-center gap-2 text-sm text-[#8C30F5]"
+              >Explore
+              <svg class="transition-transform duration-800 group-hover:translate-x-1" width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.1958 1.47132C9.9354 1.21097 9.9354 0.788864 10.1958 0.528514C10.4561 0.268165 10.8782 0.268165 11.1386 0.528514L15.1386 4.52851C15.3989 4.78886 15.3989 5.21097 15.1386 5.47132L11.1386 9.47132C10.8782 9.73167 10.4561 9.73167 10.1958 9.47132C9.9354 9.21097 9.9354 8.78886 10.1958 8.52851L13.0577 5.66658H1.34101C0.968761 5.66658 0.666992 5.3681 0.666992 4.99991C0.666992 4.63172 0.968761 4.33324 1.34101 4.33324H13.0577L10.1958 1.47132Z" fill="#8C30F5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-col transition-transform gap-6 rounded-md bg-red-600 px-[32px] py-5 shadow-2xl transition-transform hover:scale-105">
+          <div class="">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="{% static 'image/Bharti_Airtel-Logo.wine' %}"></svg>
+          </div>
+          <div class="space-y-3">
+            <h2 class="text-xl font-medium text-white"style="font-size: 25px;">MortgageLoan</h2><br>
+            <p class="text-sm text-white"style="font-size: 13px;">HDFC Bank</p><br>
+            <p class="text-sm text-white"style="font-size: 13px;">8.75% Onwards</p><br>
+            <p class="text-sm text-white"style="font-size: 13px;">Loan Tenure Up to 15 years</p><br>
+            <a href="https://www.hdfcbank.com/personal/borrow/your-loans-against-securities/loan-against-property" class="text-ind group text-white flex items-center gap-2 text-sm text-[#8C30F5]"
+              >Explore
+              <svg class="transition-transform duration-800 group-hover:translate-x-1" width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.1958 1.47132C9.9354 1.21097 9.9354 0.788864 10.1958 0.528514C10.4561 0.268165 10.8782 0.268165 11.1386 0.528514L15.1386 4.52851C15.3989 4.78886 15.3989 5.21097 15.1386 5.47132L11.1386 9.47132C10.8782 9.73167 10.4561 9.73167 10.1958 9.47132C9.9354 9.21097 9.9354 8.78886 10.1958 8.52851L13.0577 5.66658H1.34101C0.968761 5.66658 0.666992 5.3681 0.666992 4.99991C0.666992 4.63172 0.968761 4.33324 1.34101 4.33324H13.0577L10.1958 1.47132Z" fill="#8C30F5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-col transition-transform gap-6 rounded-md bg-red-600 px-[32px] py-5 shadow-2xl transition-transform hover:scale-105">
+          <div class="">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="{% static 'image/Bharti_Airtel-Logo.wine' %}"></svg>
+          </div>
+          <div class="space-y-3">
+            <h2 class="text-xl font-medium text-white"style="font-size: 25px;">AutoLoan</h2><br>
+            <p class="text-sm text-white"style="font-size: 13px;">Axis Bank</p><br>
+            <p class="text-sm text-white"style="font-size: 13px;">Interest rate</p><br>
+            <p class="text-sm text-white"style="font-size: 13px;">9.2%</p><br>
+            
+            <a href="https://sbi.co.in/web/personal-banking/loans/auto-loans" class="text-ind group text-white flex items-center gap-2 text-sm text-[#8C30F5]"
+              >Explore
+              <svg class="transition-transform duration-800 group-hover:translate-x-1" width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.1958 1.47132C9.9354 1.21097 9.9354 0.788864 10.1958 0.528514C10.4561 0.268165 10.8782 0.268165 11.1386 0.528514L15.1386 4.52851C15.3989 4.78886 15.3989 5.21097 15.1386 5.47132L11.1386 9.47132C10.8782 9.73167 10.4561 9.73167 10.1958 9.47132C9.9354 9.21097 9.9354 8.78886 10.1958 8.52851L13.0577 5.66658H1.34101C0.968761 5.66658 0.666992 5.3681 0.666992 4.99991C0.666992 4.63172 0.968761 4.33324 1.34101 4.33324H13.0577L10.1958 1.47132Z" fill="#8C30F5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-col transition-transform gap-6 rounded-md bg-red-600 px-[32px] py-5 shadow-2xl transition-transform hover:scale-105">
+          <div class="">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="{% static 'image/Bharti_Airtel-Logo.wine' %}"></svg>
+          </div>
+          <div class="space-y-3">
+            <h2 class="text-xl font-medium text-white"style="font-size: 25px;">BusinessLoan</h2><br>
+            <p class="text-sm text-white"style="font-size: 13px;">HDFC Bank</p><br>
+            <p class="text-sm text-white"style="font-size: 13px;">Interest Rate 12% onwards</p><br>
+            
+            <a href="https://www.hdfcbank.com/personal/borrow/popular-loans/business-loan" class="text-ind group text-white flex items-center gap-2 text-sm text-[#8C30F5]"
+              >Explore
+              <svg class="transition-transform duration-800 group-hover:translate-x-1" width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.1958 1.47132C9.9354 1.21097 9.9354 0.788864 10.1958 0.528514C10.4561 0.268165 10.8782 0.268165 11.1386 0.528514L15.1386 4.52851C15.3989 4.78886 15.3989 5.21097 15.1386 5.47132L11.1386 9.47132C10.8782 9.73167 10.4561 9.73167 10.1958 9.47132C9.9354 9.21097 9.9354 8.78886 10.1958 8.52851L13.0577 5.66658H1.34101C0.968761 5.66658 0.666992 5.3681 0.666992 4.99991C0.666992 4.63172 0.968761 4.33324 1.34101 4.33324H13.0577L10.1958 1.47132Z" fill="#8C30F5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-col transition-transform gap-6 rounded-md bg-red-600 px-[32px] py-5 shadow-2xl transition-transform hover:scale-105">
+          <div class="">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="{% static 'image/Bharti_Airtel-Logo.wine' %}"></svg>
+          </div>
+          <div class="space-y-3">
+            <h2 class="text-xl font-medium text-white"style="font-size: 25px;">Payday Loan</h2><br>
+            <p class="text-sm text-white"style="font-size: 13px;">Bajaj Finance	</p><br>
+            <p class="text-sm text-white"style="font-size: 13px;">Interest Rate 11.00% onwards</p><br>
+        
+            <a href="https://www.bajajfinserv.in/urgent-payday-loan-in-india" class="text-ind group text-white flex items-center gap-2 text-sm text-[#8C30F5]"
+              >Explore
+              <svg class="transition-transform duration-800 group-hover:translate-x-1" width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.1958 1.47132C9.9354 1.21097 9.9354 0.788864 10.1958 0.528514C10.4561 0.268165 10.8782 0.268165 11.1386 0.528514L15.1386 4.52851C15.3989 4.78886 15.3989 5.21097 15.1386 5.47132L11.1386 9.47132C10.8782 9.73167 10.4561 9.73167 10.1958 9.47132C9.9354 9.21097 9.9354 8.78886 10.1958 8.52851L13.0577 5.66658H1.34101C0.968761 5.66658 0.666992 5.3681 0.666992 4.99991C0.666992 4.63172 0.968761 4.33324 1.34101 4.33324H13.0577L10.1958 1.47132Z" fill="#8C30F5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+{% elif prediction_text == 'No' %}
+<!-- CARD COMPONENT -->
+<div class="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-xl">
+  <div class="flex-shrink-0">
+    
+  </div>
+  <div class="ml-6 pt-1" >
+    <h4 class="text-xl text-gray-900" style="font-size: 18px;">We're sorry, but you're currently not eligible for our Loans.</h4>
+    <p class="text-base text-gray-600">You have a new message!</p>
+  </div>
+</div>
+
+       
+        
+        
+{% endif %}      
+{% endblock content %}
+

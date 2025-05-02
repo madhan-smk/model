@@ -1,0 +1,163 @@
+{% extends "users/base.html" %}
+{% block title %}Profile Page{% endblock title %}
+{% block content %}
+<style>
+    /* General Body Styling */
+    
+    body{
+        
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    /* Profile Container */
+    .profile-container {
+        background-color: #4a515c;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat; /* Semi-transparent white background */
+        max-width: 1200px;
+        width: 100%;
+        padding: 30px;
+        margin-top: 80px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    /* Profile Image Styling */
+    .profile-image {
+        
+        border-radius: 10%;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    /* Form Styling */
+    .form-content {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+        font-size: 16px;
+        color: #003fb3;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Button Styling */
+    .button-group {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-right: 10px;
+    }
+
+    .btn-primary {
+        background-color: #00b30f;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #00b30f;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .profile-container {
+            padding: 20px;
+        }
+        .form-content {
+            padding: 20px;
+        }
+    }
+</style>
+
+
+<div class="profile-container">
+    <h2 style="color: #ffffff;">Your Profile</h2>
+    <img class="profile-image" src="{{ user.profile.avatar.url }}" alt="Profile Image">
+    {% if user_form.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <div id="form_errors">
+            {% for key, value in user_form.errors.items %}
+                <strong>{{ value }}</strong>
+            {% endfor %}
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endif %}
+    <div class="form-content">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                {{ user_form.username }}
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                {{ user_form.email }}
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="avatar">Change Avatar:</label>
+                {{ profile_form.avatar }}
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                {{ profile_form.bio }}
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary" id="save-btn">Save Changes</button>
+                <button type="reset" class="btn btn-secondary" id="reset-btn">Reset</button>
+            </div>
+        </form>
+    </div>
+    {% if user_form.errors %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Error:</strong> Please correct the form errors.
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}
